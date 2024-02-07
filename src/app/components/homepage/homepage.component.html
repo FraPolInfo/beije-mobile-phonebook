@@ -1,0 +1,6 @@
+<div class="container">
+    <div>
+        <app-input-text [(ngModel)]="message" [placeholder]="'scrivi qui per cambiare messaggio'"></app-input-text>
+        <app-button [label]="message" [buttonClass]="'bg-danger'" (buttonClicked)="saveMessage()"> </app-button> 
+    </div>
+</div>
