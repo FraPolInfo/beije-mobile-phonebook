@@ -6,22 +6,32 @@ import { PhonelistComponent } from './components/phonelist/phonelist.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { SharedModule } from './components/@shared/shared.module';
 import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
+import { PhonelistCardComponent } from './components/phonelist/phonelist-card/phonelist-card.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
     imports: [
         CommonModule,
         BrowserModule,
         SharedModule,
-        FormsModule
+        FormsModule,
+        AppRoutingModule,
+        MatSlideToggleModule,
     ],
     declarations: [
         AppComponent,
         HomepageComponent,
-        PhonelistComponent
+        PhonelistComponent,
+        PhonelistCardComponent
     ],
     exports: [AppComponent,
         HomepageComponent,
         PhonelistComponent],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    providers: [
+      provideAnimationsAsync()
+    ]
 })
 export class CustomRootModule { }

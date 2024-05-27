@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrl: './phonelist.component.css'
 })
 export class PhonelistComponent {
+  isRightOpen: boolean = false;
 
 }

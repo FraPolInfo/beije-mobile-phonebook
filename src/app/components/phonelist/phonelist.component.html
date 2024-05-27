@@ -1,1 +1,16 @@
-<p>phonelist works!</p>
+<div class='col-12 d-flex align-content-center justify-content-center'>
+    <app-phonelist-card
+    class="col-4 p-5"
+    label="Rubrica">
+    <mat-slide-toggle>Toggle me!</mat-slide-toggle>
+    </app-phonelist-card>
+
+    <app-phonelist-card
+    class="col-4 p-5"
+    [isOpen]=isRightOpen>
+
+    </app-phonelist-card>
+</div>
+
+
+

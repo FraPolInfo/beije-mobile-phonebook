@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NameServiceService } from '../../services/name-service.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-homepage',
@@ -11,7 +12,8 @@ export class HomepageComponent {
   message: string = ''
 
   constructor(
-    private nameService : NameServiceService
+    private nameService : NameServiceService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -20,5 +22,7 @@ export class HomepageComponent {
 
   saveMessage() {
     this.nameService.setMessage(this.message)
+
+    this.router.navigate(['phonelist'])
   }
 }

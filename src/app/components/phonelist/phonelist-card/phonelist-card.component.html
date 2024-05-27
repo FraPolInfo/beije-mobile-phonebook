@@ -1,0 +1,4 @@
+<div class="{{cardClass}} phone-card" [ngClass]="{'phone-card--open' : isOpen, 'phone-card--close': !isOpen}">
+    <div *ngIf="label" class="phone-card__header pt-5 px-5 pb-4"> {{label}}</div>
+    <ng-content ngIf="isOpen"></ng-content>
+</div>

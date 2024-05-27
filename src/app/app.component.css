@@ -1,0 +1,12 @@
+.app-background {
+    width: 100%;
+    height: 100vh;
+    background-color: #CBC3A5;
+    overflow: auto;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    margin: 0px;
+  }

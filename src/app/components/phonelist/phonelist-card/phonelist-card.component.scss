@@ -1,0 +1,18 @@
+.phone-card{
+    padding: 1rem;
+    border-radius: 20%;
+    min-height: 500px;
+    &--open {
+        background-color: #7CA4A3;
+    }
+
+    &--close{
+        background-color: #5B5358;
+    }
+
+    &__header {
+        font-weight: bold;
+        font-size: 2rem;
+        color: #B65A5A;
+    }
+}
