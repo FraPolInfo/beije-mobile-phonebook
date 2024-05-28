@@ -14,6 +14,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PhonelistEditComponent } from './components/phonelist/phonelist-edit/phonelist-edit.component';
 import { SpinnerInterceptor } from './components/@shared/spinner/spinner.interceptor';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
     imports: [
@@ -24,7 +25,7 @@ import { SpinnerInterceptor } from './components/@shared/spinner/spinner.interce
         AppRoutingModule,
         MatSlideToggleModule,
         HttpClientModule,
-        FontAwesomeModule     
+        FontAwesomeModule
     ],
     declarations: [
         AppComponent,

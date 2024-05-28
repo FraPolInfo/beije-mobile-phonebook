@@ -1,11 +1,43 @@
 <div class="d-flex justify-content-end">
     <div class="col-1 mx-1">
-        <app-button (buttonClicked)="onClose()" buttonClass="d-flex primary-button">
+        <app-button (buttonClicked)="onClose(); contactsForm.resetForm()" buttonClass="d-flex primary-button">
             <fa-icon [icon]="faX"></fa-icon>
         </app-button> 
     </div>
 </div>
+<div>
+    <div class="container">
+        <form #contactsForm="ngForm" (ngSubmit)="submitForm(contactsForm)">
+       
+          <div class="form-group pt-3">
+            <label for="name">Nome</label>
+            <input type="text" class="form-control input-text" id="name" name="name" [(ngModel)]="newContact.name" required>
+            <div *ngIf="contactsForm.controls['name'].touched && contactsForm.controls['name'].invalid" class="text-danger">
+              Inserisci un nome per il contatto
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group pt-3 col-4">
+              <label for="name">Prefisso</label>
+              <select name="ipf" class="input-text" [(ngModel)]="newContact.internationalPf.prefix">
+                <option *ngFor="let prefix of prefixList" value="{{prefix.prefix}}">
+                  {{ prefix.prefix }} - ( {{ prefix.id }} ) 
+                </option>
+              </select>
+            </div>
 
-{{newContact | json}}
+            <div class="form-group pt-3 col-8">
+              <label for="mobile">Numero di Telefono</label>
+              <input type="tel" class="form-control input-text" id="mobile" name="mobile" [(ngModel)]="newContact.phoneNumber" required pattern="[0-9]{10}">
+              <div *ngIf="contactsForm.controls['mobile'].touched && contactsForm.controls['mobile'].invalid" class="text-danger">
+                Inserisci un numero di telefono valido (10 cifre, solo numeri)
+              </div>
+            </div>
+          </div>
 
-{{contactToEdit | json}}
+          <div class="pt-3">
+            <button type="submit" class="btn primary-button" [disabled]="!contactsForm.valid">Verifica e Salva</button>
+          </div>
+        </form>
+      </div>
+</div>

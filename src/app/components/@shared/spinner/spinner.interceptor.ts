@@ -1,6 +1,6 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, tap } from "rxjs";
+import { Observable, delay, tap } from "rxjs";
 import { SpinnerService } from "../../../services/spinner.service";
 
 @Injectable()
@@ -16,8 +16,9 @@ export class SpinnerInterceptor implements HttpInterceptor {
     this.spinnerService.setSpinnerValue(true)
 
     return next.handle(request).pipe(
+      delay(1000),
       tap((event: HttpEvent<any>) => {
-            setTimeout(() => this.spinnerService.setSpinnerValue(false), 1000)
+            this.spinnerService.setSpinnerValue(false)
       })
     );
   }

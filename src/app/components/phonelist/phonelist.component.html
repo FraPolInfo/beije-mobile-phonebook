@@ -14,7 +14,7 @@
             </div>
 
             <div class="col-1">
-                <app-button (buttonClicked)="editContact('')" buttonClass="d-flex primary-button">
+                <app-button (buttonClicked)="newContact()" buttonClass="d-flex primary-button">
                     <fa-icon [icon]="faPlus"></fa-icon>
                 </app-button> 
             </div>
@@ -30,7 +30,6 @@
             </div>
         </ng-template>
 
-
     </app-phonelist-card>
 
     <app-phonelist-card
@@ -39,7 +38,8 @@
     >
         <app-phonelist-edit
         [contactToEdit]="contactToOpen"
-        (closeEdit)="isRightOpen = false; contactToOpen = undefined"
+        [prefixList]="prefixList"
+        (closeEdit)="isRightOpen = false;"
         >
     </app-phonelist-edit>
     </app-phonelist-card>
