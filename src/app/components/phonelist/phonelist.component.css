@@ -1,0 +1,11 @@
+span {
+    line-height: 1.4;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.text-link {
+    cursor: pointer;
+    color: #B65A5A;
+    font-weight: bold;
+}

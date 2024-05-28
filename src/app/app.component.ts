@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NameServiceService } from './services/name-service.service';
+import { NumberService } from './services/number-service.service';
 
 @Component({
   selector: 'app-root',
@@ -8,15 +8,12 @@ import { NameServiceService } from './services/name-service.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  message = '';
-  title = 'beije-mobile-phonebook';
-
   constructor (
-    public nameService : NameServiceService
+    public nameService : NumberService
   ) {
   }
 
   ngOnInit() {
-    this.message = this.nameService.getMessage()
+
   }
 }

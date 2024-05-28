@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ButtonComponent } from './button/button.component';
 import { InputTextComponent } from './input-text/input-text.component';
 import { FormsModule } from '@angular/forms';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
     imports: [
@@ -14,9 +15,12 @@ import { FormsModule } from '@angular/forms';
     ],
     declarations: [
         ButtonComponent,
-        InputTextComponent
+        InputTextComponent,
+        SpinnerComponent
     ],
-    exports: [ButtonComponent,
-    InputTextComponent]
+    exports: [
+        ButtonComponent,
+        InputTextComponent,
+        SpinnerComponent]
 })
 export class SharedModule { }
