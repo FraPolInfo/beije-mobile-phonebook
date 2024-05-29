@@ -5,7 +5,7 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { PhonelistComponent } from './components/phonelist/phonelist.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { SharedModule } from './components/@shared/shared.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { PhonelistCardComponent } from './components/phonelist/phonelist-card/phonelist-card.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -14,7 +14,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PhonelistEditComponent } from './components/phonelist/phonelist-edit/phonelist-edit.component';
 import { SpinnerInterceptor } from './components/@shared/spinner/spinner.interceptor';
-import { ToastrModule } from 'ngx-toastr';
+import { ContactCardComponent } from './components/phonelist/contact-card/contact-card.component';
+import { MobilePipe } from './utils/custom-pipes.pipes';
 
 @NgModule({
     imports: [
@@ -25,14 +26,17 @@ import { ToastrModule } from 'ngx-toastr';
         AppRoutingModule,
         MatSlideToggleModule,
         HttpClientModule,
-        FontAwesomeModule
+        FontAwesomeModule,
+        ReactiveFormsModule
     ],
     declarations: [
         AppComponent,
         HomepageComponent,
         PhonelistComponent,
         PhonelistCardComponent,
-        PhonelistEditComponent
+        PhonelistEditComponent,
+        ContactCardComponent,
+        MobilePipe
     ],
     exports: [AppComponent,
         HomepageComponent,

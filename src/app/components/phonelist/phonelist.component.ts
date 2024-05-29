@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { NumberService } from '../../services/number-service.service';
-import { catchError, forkJoin, tap } from 'rxjs';
+import { catchError, concat, forkJoin, tap } from 'rxjs';
 import { faMagnifyingGlass, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Contact, internationalPf } from './contact.model';
 import { SpinnerService } from '../../services/spinner.service';
+import { FormGroup } from '@angular/forms';
 
 const EMPTYPREFIX: internationalPf = {
   id: "",
@@ -18,6 +19,7 @@ const EMPTYPREFIX: internationalPf = {
 })
 export class PhonelistComponent {
   isRightOpen: boolean = false;
+  isNewContact: boolean = false;
 
   searchString: string = "";
 
@@ -68,33 +70,53 @@ export class PhonelistComponent {
       })
     ).subscribe()
 
+    this.contactList = JSON.parse(localStorage.getItem("contactList")|| '[]');
   }
 
-  verifyNumber() {
-  }
 
-  editContact(contactId: string) {
-    const newContact: Contact = {
-      id: this.contactList.length ? this.contactList[-1].id + 1 : '1',
-      name: "",
-      phoneNumber: "",
-      internationalPf: this.prefixList.find(ipf => ipf.prefix === "39") || EMPTYPREFIX
-    }
-    this.contactToOpen = this.contactList.find(c => c.id === contactId) || newContact
+  editContact(contact: Contact) {
+    this.contactToOpen = contact
     this.isRightOpen = true;
   }
 
+  deleteContact(contact: Contact) {
+    this.contactList = this.contactList.filter(c => c.id !== contact.id)
+    window.localStorage.setItem("contactList", JSON.stringify(this.contactList));
+  }
+
   newContact() {
-    if (this.isRightOpen === false) {
       var prefix = this.prefixList.find(ipf => ipf.prefix === "39") || EMPTYPREFIX;  
       const newContact: Contact = {
-        id: this.contactList.length ? this.contactList[-1].id + 1 : '1',
+        id: this.contactList.length ? this.contactList[this.contactList.length-1].id + 1 : '1',
         name: "",
         phoneNumber: "",
         internationalPf: { ...prefix }
       }
       this.contactToOpen = newContact
       this.isRightOpen = true;
+      this.isNewContact = true
+  }
+
+  updateContact(contact: Contact) {
+    if(this.isNewContact) {
+      this.contactList.push({...contact})
+      this.isNewContact = false
+    } else {
+      const indexToModify = this.contactList.findIndex( c => c.id === contact.id)
+      this.contactList[indexToModify] = {...contact}
+    }
+    
+    window.localStorage.setItem("contactList", JSON.stringify(this.contactList));
+  }
+
+  onClose() {
+    this.isRightOpen = false
+    this.contactToOpen = {
+      id: "",
+      name: "",
+      phoneNumber: "",
+      internationalPf: EMPTYPREFIX
     }
   }
+
 }

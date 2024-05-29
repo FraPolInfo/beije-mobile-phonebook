@@ -1,0 +1,20 @@
+<div class="container bg-white contact-card" (click)="onSelectContact()" [ngClass]="{'contact-card--selected' : selected}">
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="col-1 mx-1 d-flex justify-content-center">
+            <span class="status-icon" [ngClass]="contact.validated ? 'bg-success' : 'bg-danger'"></span>
+        </div>
+        <div class="col-10">
+            <div class="d-flex">
+                <span>{{contact.name}}</span>
+            </div>
+            <div>
+                {{(contact.internationalPf.prefix + contact.phoneNumber) | mobilepipe}}
+            </div>
+        </div>
+        <div class="col-1 mx-1">
+            <app-button (buttonClicked)="onDeleteContact()" buttonClass="d-flex primary-button">
+                <fa-icon [icon]="faX"></fa-icon>
+            </app-button> 
+        </div>
+    </div>
+</div>
