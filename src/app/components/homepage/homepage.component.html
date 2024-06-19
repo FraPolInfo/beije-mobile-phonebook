@@ -1,6 +1,70 @@
-<div class="container">
-    <div>
-        <app-input-text [(ngModel)]="message" [placeholder]="'scrivi qui per cambiare messaggio'"></app-input-text>
-        <app-button [label]="message" [buttonClass]="'bg-danger'" (buttonClicked)="saveMessage()"> </app-button> 
+<div class="col-12 d-flex align-content-center justify-content-center">
+    <app-phonelist-card
+    class="col-4 m-5"
+    >
+    <div *ngIf="isLogin; else registration">
+      <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+       
+        <div class="form-group pt-3">
+          <label for="userName">User Name</label>
+          <input type="text" class="form-control input-text" id="userName" formControlName="userName" [(ngModel)]="userName" required>
+          <div *ngIf="loginForm.controls['userName'].touched && loginForm.controls['userName'].invalid" class="text-danger">
+            Inserisci il tuo userName
+          </div>
+        </div>
+
+        <div class="form-group pt-3">
+        <label for="password">Password</label>
+        <input type="password" class="form-control input-text" id="password" formControlName="password" [(ngModel)]="password" required >
+        <div *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].invalid" class="text-danger">
+            Inserisci la tua password
+        </div>
+        </div>
+
+        <div class="pt-3">
+          <button type="submit" class="btn primary-button" [disabled]="!loginForm.valid">Login</button>
+        </div>
+        <div class="pt-3">
+          <button type="button" class="btn primary-button" (click)="isLogin = false; loginForm.reset()">Register</button>
+        </div>
+      </form> 
     </div>
+
+    <ng-template #registration>
+      <form [formGroup]="registrationForm" (ngSubmit)="submitRegistration()">
+       
+        <div class="form-group pt-3">
+          <label for="newUserName">User Name</label>
+          <input type="text" class="form-control input-text" id="newUserName" formControlName="newUserName" [(ngModel)]="newUserName" required>
+          <div *ngIf="registrationForm.controls['newUserName'].touched && registrationForm.controls['newUserName'].invalid" class="text-danger">
+            Inserisci il tuo nuovo userName
+          </div>
+        </div>
+
+        <div class="form-group pt-3">
+        <label for="newPassword">Password</label>
+        <input type="password" class="form-control input-text" id="newPassword" formControlName="newPassword" [(ngModel)]="newPassword" required >
+        <div *ngIf="registrationForm.controls['newPassword'].touched && registrationForm.controls['newPassword'].invalid" class="text-danger">
+          La tua password deve essere lunga almeno 8 caratteri e contenere almeno una lettera ed un numero
+        </div>
+        </div>
+
+        <div class="form-group pt-3">
+          <label for="repeatPassword">Conferma password</label>
+          <input type="password" class="form-control input-text" id="repeatPassword" formControlName="repeatPassword" [(ngModel)]="repeatPassword" required >
+          <div *ngIf="registrationForm.controls['repeatPassword'].touched && registrationForm.controls['repeatPassword'].invalid" class="text-danger">
+              Le password devono essere uguali
+          </div>
+          </div>
+
+        <div class="pt-3">
+          <button type="submit" class="btn primary-button" [disabled]="!registrationForm.valid">Register</button>
+        </div>
+        <div class="pt-3">
+          <button type="button" class="btn primary-button" (click)="isLogin = true; registrationForm.reset()">Back</button>
+        </div>
+      </form> 
+    </ng-template>
+
+    </app-phonelist-card>
 </div>

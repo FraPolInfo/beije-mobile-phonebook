@@ -9,3 +9,8 @@ span {
     color: #B65A5A;
     font-weight: bold;
 }
+
+.log-out {
+    color:#B65A5A;
+    cursor: pointer;
+}

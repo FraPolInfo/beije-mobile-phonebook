@@ -6,6 +6,11 @@ export interface Contact {
     validated?: boolean
 }
 
+export interface UserContact {
+    userName: string,
+    contactList: Contact[]
+}
+
 export interface internationalPf {
     id: string
     country: string,
